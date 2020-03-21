@@ -8,8 +8,6 @@ Http2.onreadystatechange = (e) => {
   var i, item, bava, asva, tfc, qrv, nsv, vgva, pos, afklm, sva, dlva, naxv, acva
   bava = 0
   asva = 0
-  asva = 0
-  tfc = 0
   qrv = 0
   nsv = 0
   vgva = 0
@@ -29,10 +27,6 @@ Http2.onreadystatechange = (e) => {
     pos = item.indexOf("ASVA")
     if (pos != -1) {
       asva = asva + 1
-    }
-    pos = item.indexOf("TFC")
-    if (pos != -1) {
-      tfc = tfc + 1
     }
     pos = item.indexOf("QRV")
     if (pos != -1) {
@@ -68,6 +62,6 @@ Http2.onreadystatechange = (e) => {
     }
   }    
 
-  var data = '<b>Air Canada Virtual: </b>' + acva + '<br /><b>AF-KLM VA: </b>' + afklm + '<br /><b>Alaskan Virtual: </b>' + asva + '<br /><b>British Airways Virtual: </b>' + bava + '<br /><b>Delta Virtual: </b>' + dlva + '<br /><b>Norwegian Virtual: </b>' + naxv + '<br /><b>NonStop Virtual: </b>' + nsv + '<br /><b>Qatar Virtual: </b>' + qrv + '<br /><b>Singapore Virtual: </b>' + sva + '<br /><b>Tailwinds Flying Club: </b>' + tfc + '<br /><b>Virgin Virtual Group: </b>' + vgva + '<br />'
+  var data = '<b>Air Canada Virtual: </b>' + acva + '<br /><b>AF-KLM VA: </b>' + afklm + '<br /><b>Alaskan Virtual: </b>' + asva + '<br /><b>British Airways Virtual: </b>' + bava + '<br /><b>Delta Virtual: </b>' + dlva + '<br /><b>Norwegian Virtual: </b>' + naxv + '<br /><b>NonStop Virtual: </b>' + nsv + '<br /><b>Qatar Virtual: </b>' + qrv + '<br /><b>Singapore Virtual: </b>' + sva + '<br /><b>Virgin Virtual Group: </b>' + vgva + '<br />'
   document.getElementById('vaFlights').innerHTML = data
 }
