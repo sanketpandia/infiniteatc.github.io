@@ -11,6 +11,9 @@
    crossorigin=""></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <style id="responsive"></style>
+  <link rel="stylesheet" href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" />
+   <script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
+   <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
 <script>
     if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       document.getElementById('responsive').innerHTML = `.sidenav {
@@ -75,12 +78,11 @@
       }
     }
     var mymap = L.map('mapid').setView([0, 0], 2);
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidmVsb2NpdHkyMyIsImEiOiJjanQ5ZGtid2YwZjhxNDNxcnVwMTdlczBzIn0.tfC3VdKBKrA42cE3KlOpPA', {
-          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-          maxZoom: 18,
-          id: 'mapbox.streets',
-          accessToken: 'pk.eyJ1IjoidmVsb2NpdHkyMyIsImEiOiJjanQ5ZGtid2YwZjhxNDNxcnVwMTdlczBzIn0.tfC3VdKBKrA42cE3KlOpPA'
-        }).addTo(mymap);
+    var gl = L.mapboxGL({
+        attribution: '<a href="https://carto.com/" target="_blank">© CARTO</a> <a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+        accessToken: 'not-needed',
+        style: 'https://api.maptiler.com/maps/voyager/style.json?key=03wtEMMm6RfsmfjurLCm'
+      }).addTo(mymap);
         var allAircraft = L.layerGroup()
         var plane = L.icon({
           iconUrl: 'newPlane.png',
