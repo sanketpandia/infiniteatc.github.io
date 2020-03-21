@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Charts | Infinite ATC</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style id="responsive"></style>
+<script>
+    if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      document.getElementById('responsive').innerHTML = `.sidenav {
+        height: 100%;
+        width: 25%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #154854;
+        overflow-x: hidden;
+      }
+
+      .content {
+        margin-left: 25%;
+        padding-left: 20px;
+      }`
+    } else {
+      document.getElementById('responsive').innerHTML = `.sidenav {
+        height: 100%;
+        width: 12%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #154854;
+        overflow-x: hidden;
+      }
+
+      .content {
+        margin-left: 12%;
+        padding-left: 10px;
+        
+      }`
+    }
+</script>
+</head>
+
+<body>
+	<div class="sidenav" id="menu">
+	<img src="images/logo.png" alt="ATC Education Group Logo" width="100%" height="auto" />
+  <a href="/">Home</a>
+  <a href="">Charts</a>
+  <a href="map-ts.html">Flight Map - Training Server</a>
+  <a href="map.html">Flight Map - Expert Server</a>
+  <a href="stats.html">Live Stats</a>
+  <a href="ts-atis.html">ATIS Generator</a>
+  <a href="https://atceg.net">Blog</a>
+</div>
+<div class="content">
+  <div class="cookies-message">
+    <p>This site uses cookies to enhance your experience. By using this site, you agree to the use of cookies. For more information, see <a href="https://www.termsfeed.com/cookies-policy/851acc1873480e38fa9cb6022c582479">here</a>.</p>
+  </div>
+  <h2>Charts</h2>
+  <p>
+    Currently, we have links to charts in the following countries;
+    <ul>
+      <li><a href="http://www.airservicesaustralia.com/aip/current/dap/AeroProcChartsTOC.htm">Australia</a></li>
+      <li><a href="https://www.faa.gov/airports/runway_safety/diagrams/">USA</a></li>
+      <li><a href="https://www.ead.eurocontrol.int/cms-eadbasic/opencms/en/login/ead-basic/">Europe</a> (Free Registration Required)</li>
+    </ul>
+    <i>Have a resource for another country? Email it to <a href="mailto:spaceguru01@gmail.com">spaceguru01@gmail.com</a> for it to be added.</i>
+</div>
+</body>
+</html>

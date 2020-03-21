@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>ES Map | Infinite ATC</title>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style id="responsive"></style>
+<script>
+    if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      document.getElementById('responsive').innerHTML = `.sidenav {
+        height: 100%;
+        width: 25%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #154854;
+        overflow-x: hidden;
+      }
+
+      .content {
+        margin-left: 25%;
+        padding-left: 20px;
+      }`
+    } else {
+      document.getElementById('responsive').innerHTML = `.sidenav {
+        height: 100%;
+        width: 12%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #154854;
+        overflow-x: hidden;
+      }
+
+      .content {
+        margin-left: 12%;
+        padding-left: 10px;
+        
+      }`
+    }
+</script>
+</head>
+
+<body>
+	<div class="sidenav" id="menu">
+	<img src="images/logo.png" alt="ATC Education Group Logo" width="100%" height="auto" />
+  <a href="/">Home</a>
+  <a href="charts.html">Charts</a>
+  <a href="map-ts.html">Flight Map - Training Server</a>
+  <a href="">Flight Map - Expert Server</a>
+  <a href="stats.html">Live Stats</a>
+  <a href="ts-atis.html">ATIS Generator</a>
+  <a href="https://atceg.net">Blog</a>
+</div>
+<div class="content">
+  <h2>Live Flight Map</h2>
+  <p id="message"></p>
+  <div id="mapid"></div>
+  <script src="leaflet.rotatedMarker.js"></script>
+  <script src="aircraft.js"></script>
+  <script>
+    function parseAircraft(id) {
+      for (i = 0; i < aircraft.length; i++) {
+        if (aircraft[i].AircraftId == id) {
+          return aircraft[i].AircraftName
+        }
+      }
+    }
+    var mymap = L.map('mapid').setView([0, 0], 2);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidmVsb2NpdHkyMyIsImEiOiJjanQ5ZGtid2YwZjhxNDNxcnVwMTdlczBzIn0.tfC3VdKBKrA42cE3KlOpPA', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox.streets',
+          accessToken: 'pk.eyJ1IjoidmVsb2NpdHkyMyIsImEiOiJjanQ5ZGtid2YwZjhxNDNxcnVwMTdlczBzIn0.tfC3VdKBKrA42cE3KlOpPA'
+        }).addTo(mymap);
+        var allAircraft = L.layerGroup()
+        var plane = L.icon({
+          iconUrl: 'newPlane.png',
+          iconSize: [24, 24],
+          shadowSize: [0, 0],
+          iconAnchor: [12, 12],
+          popupAnchor: [0, -12]
+        });
+        var flights = {};
+        var counter = 0;
+
+        async function refreshFlights() {
+        let response = await fetch('https://atcegserverside4--webpage.repl.co/flights');
+        response = await response.json();
+        // The two lines above replace the need for the whole XmlHttpRequest.
+        
+        var flightId;
+        for (flightId in flights) {
+          flights[flightId].inLastResponse = false;
+        }
+        var i, item
+        for (i = 0; i < response.length; i++) {
+              var responseItem = response[i];
+              var flight = flights[responseItem.FlightID];
+              if (!flight) {
+                  flight = {
+                    // Changed to interpolatin for better readability
+                    html: `<b>${responseItem.CallSign}</b><br>`+
+                      `${responseItem.DisplayName}<br>`+
+                      `${parseAircraft(responseItem.AircraftID)}<br>`+
+                      `${Math.round(responseItem.Speed)}kts<br>`+
+                      `${Math.round(responseItem.Altitude)}ft`
+                  };
+                  flights[responseItem.FlightID] = flight;
+                }
+              flight.longitutde = responseItem.Longitude;
+              flight.latitude = responseItem.Latitude;
+              flight.heading = responseItem.Heading;
+              if (flight.marker) {
+                flight.marker.setLatLng([responseItem.Latitude, responseItem.Longitude])
+                flight.marker.setRotationAngle(responseItem.Heading + 60)
+                flight.marker.getPopup().setContent(responseItem.CallSign + '</b><br>' + responseItem.DisplayName + '<br>' + parseAircraft(responseItem.AircraftID) + '<br>' + Math.round(responseItem.Speed) + 'kts<br>' + Math.round(responseItem.Altitude) + 'ft')
+                flight.marker.getPopup().update()
+              } else {
+                flight.marker = L.marker(
+                  [responseItem.Latitude, responseItem.Longitude],
+                  {icon: plane, rotationAngle: responseItem.Heading + 60}
+                );
+                flight.marker.addTo(mymap);
+                flight.marker.bindPopup(flight.html);
+                allAircraft.addLayer(flight.marker);
+              }
+              flight.inLastResponse = true;
+            }
+
+            var removedFlights = [];
+            for (flightId in flights) {
+              if (!flights[flightId].inLastResponse) {
+                removedFlights.push(flightId);
+              }
+            }
+
+            removedFlights.forEach(function (removedId) {
+              mymap.removeLayer(flights[removedId].marker);
+              delete flights[removedId];
+            });
+          };
+          counter++
+          if (counter % 60 !== 0 || confirm('You Still There?\nThe map has been open for 5 minutes, Do you wish to continue?')) {
+            setTimeout(refreshFlights, 5000);
+          } else {
+            document.getElementById('message').innerHTML = '<b>The map has stopped updating as you did not confirm you were still using it. Refresh the page to continue.</b>'
+          }
+        refreshFlights();
+  </script>
+</div>
+</body>
+</html>

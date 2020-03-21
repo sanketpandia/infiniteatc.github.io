@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 5px;
+  background-color: white;
+}
+
+.cookies-message {
+  border-radius: 15px;
+  background-color: lightcyan;
+  height: auto;
+  width: 99%;
+  color: black;
+  padding-left: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.content {
+  background-color: white;
+  padding: 5px;
+}
+
+.admin-item {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  height: 100%;
+  width: 30%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.station {
+  height: 100px;
+
+}
+
+iframe {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  width: 30%;
+  height: 400px;
+}
+
+p {
+  width: 100%;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: #fff;
+  color: #154854;
+}
+
+
+/* Table */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 99%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+#mapid { height: 700px; }

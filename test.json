@@ -1,0 +1,18 @@
+{
+  "AircraftID": "f11ed126-bce8-46ef-9265-69191c354575",
+  "AircraftName": null,
+  "Altitude": 33999.791826564,
+  "CallSign": "100HOURS",
+  "DisplayName": "FirstOfficerShami-YT",
+  "FlightID": "8b28fa86-52f4-485b-875c-a6b02da76f5e",
+  "Heading": 301.0835,
+  "LastReport": null,
+  "LastReportUTC": 132066197508889120,
+  "Latitude": -16.35560551089314,
+  "LiveryID": "793768c8-82f1-4562-be0a-31c7051a8aae",
+  "Longitude": -126.24114192076301,
+  "Speed": 459.0805304486017,
+  "Track": 302.5162353515625,
+  "UserID": "632c6e8e-c730-4dda-93b3-49800100645c",
+  "VerticalSpeed": 14.264150619506836
+}
