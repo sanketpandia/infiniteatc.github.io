@@ -5,7 +5,7 @@ Http2.send();
 Http2.onreadystatechange = (e) => {
   var response2 = Http2.responseText
   response2 = JSON.parse(response2)
-  var i, item, bava, asva, tfc, qrv, nsv, vgva, pos, afklm, sva, dlva, aava, acva
+  var i, item, bava, asva, tfc, qrv, nsv, vgva, pos, afklm, sva, dlva, aava, acva, eyv
   bava = 0
   asva = 0
   qrv = 0
@@ -16,6 +16,7 @@ Http2.onreadystatechange = (e) => {
   dlva = 0
   acva = 0
   aava = 0
+  eyv = 0
   var len = response2.length
   for (i = 0; i < len; i++) {
     item = response2[i].CallSign
@@ -60,8 +61,12 @@ Http2.onreadystatechange = (e) => {
     if (pos != -1) {
       acva = acva + 1
     }
+    pos = item.indexOf("EYV")
+    if (pos != -1) {
+      eyv = eyv + 1
+    }
   }    
 
-  var data = '<b>Air Canada Virtual: </b>' + acva + '<br /><b>AF-KLM VA: </b>' + afklm + '<br /><b>Alaskan Virtual: </b>' + asva + '<br /><b>British Airways Virtual: </b>' + bava + '<br /><b>Delta Virtual: </b>' + dlva + '<br /><b>American Virtual: </b>' + aava + '<br /><b>NonStop Virtual: </b>' + nsv + '<br /><b>Qatar Virtual: </b>' + qrv + '<br /><b>Singapore Virtual: </b>' + sva + '<br /><b>Virgin Virtual Group: </b>' + vgva + '<br />'
+  var data = '<b>Air Canada Virtual: </b>' + acva + '<br /><b>AF-KLM VA: </b>' + afklm + '<br /><b>Alaskan Virtual: </b>' + asva + '<br /><b>British Airways Virtual: </b>' + bava + '<br /><b>Delta Virtual: </b>' + dlva + '<br /><b>American Virtual: </b>' + aava + '<br /><b>NonStop Virtual: </b>' + nsv + '<br /><b>Qatar Virtual: </b>' + qrv + '<br /><b>Singapore Virtual: </b>' + sva + '<br /><b>Virgin Virtual Group: </b>' + vgva + '<br /><b>Etihad Virtual: </b>' + eyv + '<br />'
   document.getElementById('vaFlights').innerHTML = data
 }
