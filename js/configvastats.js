@@ -67,6 +67,6 @@ Http2.onreadystatechange = (e) => {
     }
   }    
 
-  var data = '<b>Air Canada Virtual: </b>' + acva + '<br /><b>AF-KLM VA: </b>' + afklm + '<br /><b>Alaskan Virtual: </b>' + asva + '<br /><b>British Airways Virtual: </b>' + bava + '<br /><b>Delta Virtual: </b>' + dlva + '<br /><b>American Virtual: </b>' + aava + '<br /><b>NonStop Virtual: </b>' + nsv + '<br /><b>Qatar Virtual: </b>' + qrv + '<br /><b>Singapore Virtual: </b>' + sva + '<br /><b>Virgin Virtual Group: </b>' + vgva + '<br /><b>Etihad Virtual: </b>' + eyv + '<br />'
+  var data = '<b>Air Canada Virtual: </b>' + acva + '<br /><b>AF-KLM VA: </b>' + afklm + '<br /><b>Alaskan Virtual: </b>' + asva + '<br /><b>British Airways Virtual: </b>' + bava + '<br /><b>Delta Virtual: </b>' + dlva + '<br /><b>American Virtual: </b>' + aava + '<br /><b>NonStop Virtual: </b>' + nsv + '<br /><b>Qatar Virtual: </b>' + qrv + '<br /><b>Singapore Virtual: </b>' + sva + '<br /><b>Virgin Virtual Group: </b>' + vgva + '<br /><b>Etihad Airways Virtual: </b>' + eyv + '<br />'
   document.getElementById('vaFlights').innerHTML = data
 }
