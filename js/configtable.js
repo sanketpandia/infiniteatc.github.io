@@ -48,7 +48,7 @@
         x = (j - 1) * 8 + 3
         value = response[x]
         value = value.slice(11, 15)
-        if (value != null) {
+        if (value != "||") {
           addContent(element, value)
         } else {
           addContent(element, "N/A")
