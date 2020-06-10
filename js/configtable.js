@@ -48,7 +48,11 @@
         x = (j - 1) * 8 + 3
         value = response[x]
         value = value.slice(11, 15)
-        addContent(element, value)
+        if (value != null) {
+          addContent(element, value)
+        } else {
+          addContent(element, "N/A")
+        }
 
         // Get Station
         element2 = String(j) + 'station'
@@ -67,6 +71,9 @@
           addContent(element2, value2)
         } else if (value2 == 5) {
           value2 = 'Departure'
+          addContent(element2, value2)
+        } else if (value2 == 6) {
+          value2 = "Center";
           addContent(element2, value2)
         } else {
           alert('Exception')
